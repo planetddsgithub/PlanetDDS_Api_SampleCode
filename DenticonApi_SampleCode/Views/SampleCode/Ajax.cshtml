@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Javascript";
+}
+
+<div class="page-header">
+    <h1>Ajax Sample Code : POST Request</h1>
+</div>
+<pre class="prettyprint"><code>
+    &lt;script&gt;
+            
+        $.ajax({
+            url: Api URL ,// Place our Api url here
+            type: 'POST',
+            headers: {
+                "API-AUTH-KEY": 'AAC6DB7A-5A66-4EBC-B694-D6BCD99881CB',//Sample Authentication Key. place your Key Here
+                "PGID": 1, // Your Practice group ID
+            },
+            dataType: 'json',
+            //Parameters : All required parameter place here
+            data: { 
+                    APPTID: 681 
+                 },
+            success: function (responsedata, status) 
+            {
+                //play with response data here 
+            },
+            error: function (request, message, error, status) 
+            {               
+                // Error if request is invalid
+            }
+        });
+
+  &lt;/script&gt;
+     </code>
+</pre>
+
+<div class="page-header">
+    <h1>Ajax Sample Code : GET Request</h1>
+</div>
+<pre class="prettyprint"><code>
+    &lt;script&gt;
+            
+        $.ajax({
+            url: Api URL ,// Place our Api url here
+            type: 'GET',
+            headers: {
+                "API-AUTH-KEY": 'AAC6DB7A-5A66-4EBC-B694-D6BCD99881CB',//Sample Authentication Key. place your Key Here
+                "PGID": 1, // Your Practice group ID
+            },
+            dataType: 'json',    
+            success: function (responsedata, status) 
+            {
+                //play with response data here 
+            },
+            error: function (request, message, error, status) 
+            {               
+                // Error if request is invalid
+            }
+        });
+  &lt;/script&gt;
+     </code>
+</pre>
+@section scripts {
+    <script type="text/javascript">        
+        $(document).ready(function ()
+        {
+          
+            $.ajax({
+                url: 'http://dev-api.denticon.com/v1/api/Appointment/Details/'  ,// Place our Api url her
+                type: 'POST',
+                headers: {
+                    "API-AUTH-KEY": 'AAC6DB7A-5A66-4EBC-B694-D6BCD99881CB',
+                    "PGID": '1'
+                },
+            dataType: 'json',
+            data: { APPTID: 681 },
+            success: function (responsedata, status) {
+                console.log("POST CALL!");
+                console.log(JSON.stringify(responsedata, undefined, 2))
+            },
+            error: function (request, message, error, status) {
+                console.log("Post Call Error")
+            }
+            });
+
+            //GET CALL
+           
+            $.ajax({
+                url: 'http://dev-api.denticon.com/v1/api/Appointment/List/',// Place our Api url her
+                type: 'GET',
+                headers: {
+                    "API-AUTH-KEY": 'AAC6DB7A-5A66-4EBC-B694-D6BCD99881CB',
+                    "PGID": '1'
+                },
+                dataType: 'json',                 
+                success: function (responsedata, status) {
+                    console.log("GET CALL!");
+                    console.log(JSON.stringify(responsedata, undefined, 2))
+                },
+                error: function (request, message, error, status) {
+                    console.log("GET Call Error")
+                }
+            });
+        });
+    </script>
+    }
